@@ -23,22 +23,23 @@ public class SettingsMenu : MonoBehaviour
         
     }
 
-    public void VolumeSlider(float volume)
+    public void VolumeSlider()
     {
-        _volumeValue.text = volume.ToString();
-        Debug.Log(volume);
-        //AudioListener.volume =volume;
+        float volume = _volumeSlider.value;
+        _volumeValue.text = Math.Round(volume * 100).ToString();
+        AudioListener.volume = volume;
     }
 
-    public void JengaBlockSlider(float numberOfLayers) 
+    public void JengaBlockSlider() 
     {
-        _jengaBlockValue.text = numberOfLayers.ToString("0.0");
+        _jengaBlockValue.text = Math.Round(_jengaBlockSlider.value * 10 + 10).ToString();
     }
 
     public void Save()
     {
         float volume = _volumeSlider.value;
         PlayerPrefs.SetFloat("Volume", volume);
+        PlayerPrefs.SetInt("VolumeValue", (int) Math.Round(volume * 100));
         var numberOfLayer = _jengaBlockSlider.value;
         PlayerPrefs.SetFloat("NumberOfLayersSlider", numberOfLayer);
         PlayerPrefs.SetInt("NumberOfLayers", (int) Math.Round(numberOfLayer * 10 + 10));
@@ -49,7 +50,9 @@ public class SettingsMenu : MonoBehaviour
     {
         float volume = PlayerPrefs.GetFloat("Volume");
         _volumeSlider.value = volume;
+        _volumeValue.text = PlayerPrefs.GetInt("VolumeValue").ToString();
         AudioListener.volume = volume;
-        float numberOfLayer = PlayerPrefs.GetFloat("NumberOfLayersSlider");
+        _jengaBlockSlider.value = PlayerPrefs.GetFloat("NumberOfLayersSlider");
+        _jengaBlockValue.text = PlayerPrefs.GetInt("NumberOfLayers").ToString();
     }
 }
