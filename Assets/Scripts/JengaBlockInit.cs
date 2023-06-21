@@ -8,6 +8,7 @@ public class JengaBlockInit : MonoBehaviour
     public GameObject[] JengaBlock = null;
     public GameObject Layer1;
     public GameObject Layer2;
+    private Vector3 _layerDefaultPosition = new Vector3(0, 8, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -18,22 +19,19 @@ public class JengaBlockInit : MonoBehaviour
             PlayerPrefs.SetInt("NumberOfLayers", _numberOfLayers);
         }
         JengaBlock = new GameObject[_numberOfLayers];
-        int axisY = 8;
         for(int i = 0; i < _numberOfLayers; i++)
         {
             GameObject gameObject;
             if(i % 2 == 0)
             {
-                Vector3 vector3 = new Vector3(0, axisY, -10);
-                gameObject = Instantiate(Layer1, vector3, Quaternion.identity);
+                gameObject = Instantiate(Layer1, _layerDefaultPosition, Quaternion.identity);
             }
             else
             {
-                Vector3 vector3 = new Vector3(10, axisY, 0);
-                gameObject = Instantiate (Layer2, vector3, Quaternion.identity);
+                gameObject = Instantiate (Layer2, _layerDefaultPosition, Quaternion.identity);
             }
             JengaBlock[i] = gameObject;
-            axisY += 10;
+            _layerDefaultPosition.y += 10;
         }
     }
 
