@@ -5,7 +5,7 @@ using UnityEngine;
 public class JengaBlockInit : MonoBehaviour
 {
     private int _numberOfLayers;
-    public GameObject[] JengaBlock = null;
+    //public GameObject[] JengaBlock = null;
     public GameObject Layer1;
     public GameObject Layer2;
     private Vector3 _layerDefaultPosition = new Vector3(0, 8, 0);
@@ -13,12 +13,13 @@ public class JengaBlockInit : MonoBehaviour
     void Start()
     {
         _numberOfLayers = PlayerPrefs.GetInt("NumberOfLayers");
+        float height = Layer1.transform.localScale.y;
         if(_numberOfLayers == 0)
         {
             _numberOfLayers = 10;
             PlayerPrefs.SetInt("NumberOfLayers", _numberOfLayers);
         }
-        JengaBlock = new GameObject[_numberOfLayers];
+        //JengaBlock = new GameObject[_numberOfLayers];
         for(int i = 0; i < _numberOfLayers; i++)
         {
             GameObject gameObject;
@@ -30,8 +31,8 @@ public class JengaBlockInit : MonoBehaviour
             {
                 gameObject = Instantiate (Layer2, _layerDefaultPosition, Quaternion.identity);
             }
-            JengaBlock[i] = gameObject;
-            _layerDefaultPosition.y += 10;
+            //JengaBlock[i] = gameObject;
+            _layerDefaultPosition.y += 8;
         }
     }
 
