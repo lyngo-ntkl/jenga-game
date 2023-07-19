@@ -5,10 +5,11 @@ using UnityEngine;
 public class JengaBlockInit : MonoBehaviour
 {
     private int _numberOfLayers;
+    private static float _objectHeight = 8;
     //public GameObject[] JengaBlock = null;
     public GameObject Layer1;
     public GameObject Layer2;
-    private Vector3 _layerDefaultPosition = new Vector3(0, 8, 0);
+    private Vector3 _layerDefaultPosition = new Vector3(0, _objectHeight, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,7 @@ public class JengaBlockInit : MonoBehaviour
                 gameObject = Instantiate (Layer2, _layerDefaultPosition, Quaternion.identity);
             }
             //JengaBlock[i] = gameObject;
-            _layerDefaultPosition.y += 8;
+            _layerDefaultPosition.y += _objectHeight;
         }
     }
 

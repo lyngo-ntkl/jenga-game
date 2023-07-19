@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8383762909407089458}
   m_Layer: 0
   m_Name: WoodenBlock1
-  m_TagString: Untagged
+  m_TagString: woodenBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,6 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c57802ae9a81e4aa9043b33444ece7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceAmout: 500
+  hasPoints: 0
+  targetCamera: {fileID: 0}
 --- !u!65 &8383762909407089458
 BoxCollider:
   m_ObjectHideFlags: 0
