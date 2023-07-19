@@ -28,6 +28,7 @@ public class WoodenBlock : MonoBehaviour
         {
             selectedRigibody = null;
         }
+
     }
     void FixedUpdate()
     {
@@ -42,14 +43,22 @@ public class WoodenBlock : MonoBehaviour
         RaycastHit hitInfo = new RaycastHit();
         Ray ray = targetCamera.ScreenPointToRay(Input.mousePosition);
         bool hit = Physics.Raycast(ray, out hitInfo);
-        if (hit)
+        if (hit && hitInfo.collider.tag.Equals("woodenBlock"))
         {
-            if (hitInfo.collider.gameObject.GetComponent<Rigidbody>())
+            //if (hitInfo.collider.gameObject.GetComponent<Rigidbody>())
+            //{
+            //    selectionDistance = Vector3.Distance(ray.origin, hitInfo.point);
+            //    originalScreenTargetPosition = targetCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, selectionDistance));
+            //    originalRigibodyPos = hitInfo.collider.transform.position;
+            //    return hitInfo.collider.gameObject.GetComponent<Rigidbody>();
+            //}
+            if (hitInfo.rigidbody)
             {
                 selectionDistance = Vector3.Distance(ray.origin, hitInfo.point);
                 originalScreenTargetPosition = targetCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, selectionDistance));
-                originalRigibodyPos = hitInfo.collider.transform.position;
-                return hitInfo.collider.gameObject.GetComponent<Rigidbody>();
+                originalRigibodyPos = hitInfo.rigidbody.position;
+                return hitInfo.rigidbody;
+
             }
         }
         return null;
@@ -58,16 +67,6 @@ public class WoodenBlock : MonoBehaviour
 
 
 
-    //private Rigidbody getRigidbody()
-    //{
-    //    RaycastHit raycastHit = new RaycastHit();
-
-    //    if (true)
-    //    {
-    //        return raycastHit.collider.gameObject.GetComponent<Rigidbody>();
-    //    }
-    //    return null;
-    //}
     //private static System.Random Random = new System.Random();
     //private Rigidbody rigidbody;
     //private Vector3 _originPosition;
@@ -86,29 +85,30 @@ public class WoodenBlock : MonoBehaviour
 
     //private void Update()
     //{
-    //    if(Input.GetMouseButtonDown(0))
+    //    if (Input.GetMouseButtonDown(0))
     //    {
     //        _rotation = transform.rotation;
     //        _lastMousepos = Input.mousePosition;
     //        _originPosition = transform.position;
-    //        if(Math.Round(_rotation.y) == 0)
+    //        if (Math.Round(_rotation.y) == 0)
     //        {
     //            _transformDirection = transform.forward;
-    //        } else if(Math.Round(_rotation.y) == 1)
+    //        }
+    //        else if (Math.Round(_rotation.y) == 1)
     //        {
     //            _transformDirection = transform.right;
     //        }
     //        RaycastHit raycastHit;
     //        bool hitStatus = Physics.Raycast(_lastMousepos, _transformDirection, out raycastHit);
-    //        if(hitStatus)
+    //        if (hitStatus)
     //        {
-    //            if(raycastHit.collider.gameObject.GetComponent<Rigidbody>() != null)
+    //            if (raycastHit.collider.gameObject.GetComponent<Rigidbody>() != null)
     //            {
     //                _distance = Vector3.Distance(_lastMousepos, raycastHit.point);
     //                _rigidbodyPosition = raycastHit.collider.transform.position;
     //            }
     //            rigidbody = raycastHit.collider.gameObject.GetComponent<Rigidbody>();
-    //            rigidbody.velocity = (_rigidbodyPosition -  _originPosition) * _force * Time.deltaTime;
+    //            rigidbody.velocity = (_rigidbodyPosition - _originPosition) * _force * Time.deltaTime;
     //        }
     //    }
     //}
@@ -144,6 +144,9 @@ public class WoodenBlock : MonoBehaviour
 
     //    _lastMousepos = Input.mousePosition;
     //}
+
+
+
     //public void OnMouseDrag()
     //{
     //    Vector3 delta = Input.mousePosition - _lastMousepos;
