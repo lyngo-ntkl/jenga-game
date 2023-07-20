@@ -4,6 +4,7 @@ public class JengaBehavior : MonoBehaviour
 {
     public GameObject prefabsObject;
     public Camera camera;
+    public GameObject terrain;
 
     const float Force = 10;
     const int DefaultNumberOfLayer = 5;
@@ -12,14 +13,16 @@ public class JengaBehavior : MonoBehaviour
     const float CenterZ= 0;
 
     private Vector3 _previousPosition;
-    private static System.Random random = new System.Random();
+    private static System.Random _random = new System.Random();
     Rigidbody rigidbody;
     Vector3 originalRigidbodyPosition;
     float distance;
     Vector3 originalScreenTargetPosition;
+    private TerrainBehavior _terrainBehavior;
     // Start is called before the first frame update
     void Start()
     {
+        _terrainBehavior = terrain.GetComponent<TerrainBehavior>();
         int numberOfLayers = PlayerPrefs.GetInt("NumberOfLayers");
         if(numberOfLayers == 0)
         {
@@ -66,6 +69,10 @@ public class JengaBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_terrainBehavior.IsLose)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit raycastHit;
@@ -74,9 +81,8 @@ public class JengaBehavior : MonoBehaviour
             {
                 rigidbody = raycastHit.rigidbody;
                 originalRigidbodyPosition = rigidbody.position;
-                //rigidbody.velocity = (originalRigidbodyPosition;
                 distance = Vector3.Distance(ray.origin, raycastHit.point);
-                originalScreenTargetPosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance));
+                originalScreenTargetPosition = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -distance));
 
             }
             else
@@ -96,20 +102,16 @@ public class JengaBehavior : MonoBehaviour
         {
             rigidbody = null;
         }
-        //RotateCameraAroundObject();
-        //MoveWoodenBlockOnClickTouch();
     }
 
     private void FixedUpdate()
     {
         if(rigidbody != null)
         {
-            float force = (float) random.NextDouble() * Force;
-            Vector3 mousePositionOffset = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance)) - originalScreenTargetPosition;
-            rigidbody.velocity = (originalRigidbodyPosition + mousePositionOffset - rigidbody.transform.position) * 500 * Time.deltaTime;
-
+            float force = (float) _random.NextDouble() * Force;
+            Vector3 mousePositionOffset = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.x)) - originalScreenTargetPosition;
+            rigidbody.velocity = (originalRigidbodyPosition + mousePositionOffset - rigidbody.transform.position) * force * Time.deltaTime;
         }
-        //MoveWoodenBlockOnClickTouch();
     }
 
     private void RotateCameraAroundObject()

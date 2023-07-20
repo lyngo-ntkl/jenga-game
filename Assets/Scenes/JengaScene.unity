@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40dc6b0294846545abd9ffe10f8f5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsLose: 0
 --- !u!1 &498858722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6140396812481480700, guid: a4582578903fe2b49b1d1e0761ed1706, type: 3}
@@ -450,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabsObject: {fileID: 498858722}
   camera: {fileID: 963194227}
+  terrain: {fileID: 201598067}
 --- !u!1001 &3527608520778163974
 PrefabInstance:
   m_ObjectHideFlags: 0

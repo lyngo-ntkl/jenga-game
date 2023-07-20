@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527608520736324432}
-  - component: {fileID: 3527608520736324435}
-  - component: {fileID: 3527608520736324446}
-  - component: {fileID: 3527608520736324447}
   m_Layer: 0
   m_Name: JengaBlock
   m_TagString: Untagged
@@ -34,42 +31,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3527608520736324435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3527608520736324434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5405f5065ba9814c8c436e7f2efd4a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Layer1: {fileID: 2524127036759103669, guid: a0fadea178e800a4e9efbcdfa92e253e, type: 3}
-  Layer2: {fileID: 3585398431519766186, guid: a4582578903fe2b49b1d1e0761ed1706, type: 3}
---- !u!114 &3527608520736324446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3527608520736324434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c57802ae9a81e4aa9043b33444ece7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3527608520736324447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3527608520736324434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98e221f12839ef4282622b28e236171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
